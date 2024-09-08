@@ -26,6 +26,9 @@ class DayItemWidget extends StatelessWidget {
         lunarDay = '${lunar.getMonthInChinese()}月';
       }
       for (final fest in lunar.getFestivals()) {
+        if (holidays.isEmpty) {
+          holidays = ' ';
+        }
         holidays += '$fest ';
       }
     }
