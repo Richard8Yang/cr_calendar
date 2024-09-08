@@ -28,4 +28,6 @@ typedef OnDateRangeSelected = void Function(
 /// Builder for week day customization at the top of the calendar widget.
 /// The weekdays first letter in uppercase is passed as a String,
 /// eg. M (Monday), T (Tuesday) etc.
-typedef LocalizedWeekDaysBuilder = Widget Function(String weekDay);
+/// The index of the week day is also passed. 0 - Sunday, 1 - Monday, etc.
+typedef LocalizedWeekDaysBuilder = Widget Function(
+    String weekDay, int weekDayIndex);

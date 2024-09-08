@@ -8,6 +8,7 @@ import 'package:cr_calendar_example/widgets/create_event_dialog.dart';
 import 'package:cr_calendar_example/widgets/day_events_bottom_sheet.dart';
 import 'package:cr_calendar_example/widgets/day_item_widget.dart';
 import 'package:cr_calendar_example/widgets/event_widget.dart';
+import 'package:cr_calendar_example/widgets/localized_week_days_widget.dart';
 import 'package:cr_calendar_example/widgets/week_days_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -96,21 +97,23 @@ class _CalendarPageState extends State<CalendarPage> {
           /// Calendar view.
           Expanded(
             child: CrCalendar(
-              firstDayOfWeek: WeekDay.monday,
+              //firstDayOfWeek: WeekDay.monday,
               eventsTopPadding: 32,
               initialDate: _currentDate,
               maxEventLines: 3,
               controller: _calendarController,
-              forceSixWeek: true,
+              //forceSixWeek: true,
               dayItemBuilder: (builderArgument) =>
                   DayItemWidget(properties: builderArgument),
               weekDaysBuilder: (day) => WeekDaysWidget(day: day),
-              eventBuilder: (drawer) => EventWidget(drawer: drawer),
+              eventBuilder: (drawer) => Container(), //EventWidget(drawer: drawer),
               onDayClicked: _showDayEventsInModalSheet,
               minDate: DateTime.now().subtract(const Duration(days: 1000)),
               maxDate: DateTime.now().add(const Duration(days: 180)),
               // weeksToShow: [0,1,2].toList(),
-              //localizedWeekDaysBuilder: (weekDay) => LocalizedWeekDaysWidget(weekDay: weekDay),
+              localizedWeekDaysBuilder: (weekDay, index) =>
+                  LocalizedWeekDaysWidget(
+                      weekDay: weekDay, weekDayIndex: index),
             ),
           ),
         ],

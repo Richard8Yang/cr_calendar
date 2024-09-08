@@ -244,7 +244,7 @@ class MonthItemState extends State<MonthItem> {
       final weekday = localizations.narrowWeekdays[i];
       result.add(Container(
         width: itemWidth,
-        child: widget.localizedWeekDaysBuilder!.call(weekday),
+        child: widget.localizedWeekDaysBuilder!.call(weekday, i),
       ));
       if (i == (localizations.firstDayOfWeekIndex - 1) % 7) {
         break;
