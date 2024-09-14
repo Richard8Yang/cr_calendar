@@ -179,7 +179,8 @@ class MonthItemState extends State<MonthItem> {
 
   Size _getConstrainedSize(BoxConstraints constraint) {
     final itemWidth = constraint.maxWidth / WeekDay.values.length;
-    double itemHeight;
+    final itemHeight = constraint.maxHeight / _weekCount;
+    /*double itemHeight;
     if ((constraint.maxHeight / _weekCount) > itemWidth) {
       itemHeight = constraint.maxHeight / _weekCount;
     } else {
@@ -191,7 +192,7 @@ class MonthItemState extends State<MonthItem> {
       } else {
         itemHeight = itemWidth;
       }
-    }
+    }*/
     return Size(itemWidth, itemHeight);
   }
 

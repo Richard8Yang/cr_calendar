@@ -26,12 +26,23 @@ class DayItemWidget extends StatelessWidget {
         lunarDay = '${lunar.getMonthInChinese()}月';
       }
       for (final fest in lunar.getFestivals()) {
-        if (holidays.isEmpty) {
-          holidays = ' ';
-        }
-        holidays += '$fest ';
+        holidays += '$fest\n';
       }
+      /*if (holidays.isEmpty) {
+        for (final fest in lunar.getOtherFestivals()) {
+          if (holidays.isEmpty) {
+            holidays = ' ';
+          }
+          holidays += '$fest ';
+        }
+      }*/
     }
+
+    final solar = Solar.fromDate(properties.date);
+    for (final fest in solar.getFestivals()) {
+      holidays += '$fest\n';
+    }
+
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: violet.withOpacity(0.3), width: 0.3)),
@@ -43,8 +54,8 @@ class DayItemWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 4),
                 alignment: Alignment.topCenter,
                 child: Container(
-                  height: 18,
-                  width: 18,
+                  height: 32,
+                  //width: 18,
                   decoration: BoxDecoration(
                     color:
                         properties.isCurrentDay ? violet : Colors.transparent,
@@ -53,6 +64,8 @@ class DayItemWidget extends StatelessWidget {
                   child: Center(
                     child: Text('${properties.dayNumber}',
                         style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
                             color: properties.isCurrentDay
                                 ? Colors.white
                                 : violet.withOpacity(
@@ -62,12 +75,13 @@ class DayItemWidget extends StatelessWidget {
               ),
               if (showLunar)
                 Container(
+                  height: 20,
                   padding: const EdgeInsets.only(top: 2),
                   alignment: Alignment.topCenter,
                   child: Text(
                     lunarDay,
                     style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 12,
                         color:
                             violet.withOpacity(properties.isInMonth ? 1 : 0.5)),
                   ),
